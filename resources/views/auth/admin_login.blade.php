@@ -1,8 +1,8 @@
 <x-guest-layout>
     <x-jet-authentication-card>
         <x-slot name="logo">
-            <img src="{{asset('backend/images/logo-login.png')}}" alt="">        
-        </x-slot>
+		<img src="{{asset('backend/images/logo-login.png')}}" alt="">	
+		</x-slot>
 
         <x-jet-validation-errors class="mb-4" />
 
@@ -12,7 +12,7 @@
             </div>
         @endif
 
-        <form method="POST" action="{{ isset($guard) ? url($guard.'/login') : route('login') }}">
+ <form method="POST" action="{{ isset($guard) ? url($guard.'/login') : route('login') }}">
             @csrf
 
             <div>
@@ -40,7 +40,7 @@
                 @endif
 
                 <x-jet-button class="ml-4">
-                    {{ __('Log in') }}
+                    {{ __('Login') }}
                 </x-jet-button>
             </div>
         </form>
