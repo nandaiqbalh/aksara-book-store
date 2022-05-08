@@ -30,6 +30,9 @@ Route::middleware(['auth:sanctum,admin', 'verified'])->get('/admin/dashboard', f
 })->name('admin.dashboard');
 
 
+// ADMIN ALL ROUTES
+Route::get('/admin/logout', [AdminController::class, 'destroy'])->name('admin.logout');
+
 // kata web setelah sacntum adalah nama guard
 Route::middleware(['auth:sanctum,web', 'verified'])->get('/dashboard', function () {
     return view('dashboard');
