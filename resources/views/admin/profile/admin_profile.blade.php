@@ -13,7 +13,7 @@
                             <h6 class="widget-user-desc">Email : {{$adminData -> email}}</h6>
                         </div>
                         <div class="float-right">
-                            <a href="" style="float: right" class="btn btn-rounded btn-success mb-5">Edit Profile</a>
+                            <a href="{{route('admin.profile.edit')}}" style="float: right" class="btn btn-rounded btn-success mb-5">Edit Profile</a>
                             <br>
                             <br>
                         </div>

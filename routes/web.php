@@ -37,6 +37,8 @@ Route::get('/admin/logout', [AdminController::class, 'destroy'])->name('admin.lo
 // profile
 Route::get('/admin/profile', [AdminProfileController::class, 'adminProfile'])->name('admin.profile');
 
+Route::get('/admin/profile/edit', [AdminProfileController::class, 'adminProfileEdit'])->name('admin.profile.edit');
+
 // kata web setelah sacntum adalah nama guard
 Route::middleware(['auth:sanctum,web', 'verified'])->get('/dashboard', function () {
     return view('dashboard');
