@@ -5,6 +5,8 @@ namespace App\Http\Controllers\Backend;
 use App\Http\Controllers\Controller;
 use App\Models\Admin;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Redirect;
 
 class AdminProfileController extends Controller
@@ -43,5 +45,35 @@ class AdminProfileController extends Controller
             'alert-type' => 'success'
         );
         return Redirect()->route('admin.profile')->with($notification);
+    }
+
+    public function adminChangePassword()
+    {
+        return view('admin.profile.admin_change_password');
+    }
+
+    public function adminUpdatePassword(Request $request)
+    {
+        $validateData = $request->validate([
+            'old_password' => 'required',
+            'password' => 'required|confirmed',
+        ]);
+
+        $hashedPassword = Admin::find(1)->password;
+        if (Hash::check($request->old_password, $hashedPassword)) {
+            $admin = Admin::find(1);
+            $admin->password = Hash::make($request->password);
+            $admin->save();
+
+            Auth::logout();
+
+            return Redirect()->route('admin.logout');
+        } else {
+            $notification = array(
+                'message' => 'Current Password did not match to our record!',
+                'alert-type' => 'error'
+            );
+            return Redirect()->back()->with($notification);
+        }
     }
 }

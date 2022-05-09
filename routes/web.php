@@ -41,6 +41,11 @@ Route::get('/admin/profile/edit', [AdminProfileController::class, 'adminProfileE
 
 Route::post('/admin/profile/store', [AdminProfileController::class, 'adminProfileStore'])->name('admin.profile.store');
 
+// password
+Route::get('/admin/change/password', [AdminProfileController::class, 'adminChangePassword'])->name('admin.change.password');
+
+Route::post('/admin/update/password', [AdminProfileController::class, 'adminUpdatePassword'])->name('admin.update.password');
+
 // kata web setelah sacntum adalah nama guard
 Route::middleware(['auth:sanctum,web', 'verified'])->get('/dashboard', function () {
     return view('dashboard');
