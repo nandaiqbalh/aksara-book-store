@@ -67,6 +67,8 @@ Route::prefix('book')->group(function () {
 
     Route::post('/store', [BookController::class, 'bookStore'])->name('book.store');
 
+    Route::get('/manage', [BookController::class, 'bookManage'])->name('book.manage');
+
 });
 
 

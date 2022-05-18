@@ -50,7 +50,7 @@
           </a>
           <ul class="treeview-menu">
           <li class="{{($route == 'book.add') ? 'active' : ''}}"><a href="{{route('book.add')}}"><i class="ti-more"></i>Add Book</a></li>            
-          <li class="{{($route == 'manage.book') ? 'active' : ''}}"><a href=""><i class="ti-more"></i>Manage Book</a></li>
+          <li class="{{($route == 'book.manage') ? 'active' : ''}}"><a href="{{route('book.manage')}}"><i class="ti-more"></i>Manage Book</a></li>
           </ul>
         </li> 
 				  

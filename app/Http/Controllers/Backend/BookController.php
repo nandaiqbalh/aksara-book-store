@@ -82,6 +82,13 @@ class BookController extends Controller
             'alert-type' => 'success'
         );
 
-        return Redirect()->back()->with($notification);
+        return Redirect()->route('book.manage')->with($notification);
     } //end store method
+
+    public function bookManage()
+    {
+        $books = Book::latest()->get();
+
+        return view('backend.book.book_view', compact('books'));
+    }
 }
