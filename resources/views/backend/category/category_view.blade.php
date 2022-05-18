@@ -44,9 +44,11 @@
                       <tbody>
                           @foreach ($categories as $category)
                           <tr>
-                            <td>{{$category -> category_name_eng}}</td>
+                            <td>{{$category -> category_name}}</td>
                             <td>
-                                <img src="{{asset($category -> category_icon)}}" style="width: 70px; height:70px" alt=""></td>
+                                <span>
+                                    <i class="{{$category -> category_icon}}"></i>    
+                                </span>                            
                             <td>
                                 <a href="" class="btn btn-info" title="Edit Data"><i class="fa fa-pencil"></i></a>
                                 <a href="" id="delete" class="btn btn-danger" title="Delete Data"><i class="fa fa-trash"></i></a>
@@ -64,7 +66,50 @@
           </div>
           <!-- /.col -->
 
+          {{-- ADD CATEGORY PAGE --}}
+          <div class="col-4">
 
+            <div class="box">
+               <div class="box-header with-border">
+                 <h3 class="box-title">Add Category</h3>
+               </div>
+               <!-- /.box-header -->
+               <div class="box-body">
+                   <div class="table-responsive">
+                    <form action="{{route('category.store')}}" method="POST" enctype="multipart/form-data">
+                        @csrf
+
+                        <div class="form-group">
+                            <label for="">Category Name<span class="text-danger">*</span></label>
+                            <div class="controls">
+                                <input id="category_name" type="text" name="category_name" class="form-control" > 
+                                @error('category_name')
+                                <span class="text-danger">{{$message}}</span>
+                                @enderror
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="">Category Icon<span class="text-danger">*</span></label>
+                            <div class="controls">
+                                <input id="category_icon" type="text" name="category_icon" class="form-control" >                                @error('category_icon')
+                                    <span class="text-danger">{{$message}}</span>
+                                @enderror
+                            </div>
+                        </div>
+                        <div class="text-xs-right">
+                            <button type="submit" class="btn btn-primary mb-5">Add Category</button>
+                        </div>
+
+                       </form>
+                   </div>
+               </div>
+               <!-- /.box-body -->
+             </div>
+             <!-- /.box -->
+
+           </div>
+        </div>
+        <!-- /.row -->
       </section>
       <!-- /.content -->
     </div>

@@ -52,6 +52,8 @@ Route::post('/admin/update/password', [AdminProfileController::class, 'adminUpda
 // ADMIN CATEGORY ALL ROUTES
 Route::prefix('category')->group(function () {
     Route::get('/view', [CategoryController::class, 'categoryView'])->name('all.category');
+
+    Route::post('/store', [CategoryController::class, 'categoryStore'])->name('category.store');
 });
 
 
