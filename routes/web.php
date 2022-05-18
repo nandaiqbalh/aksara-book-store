@@ -56,6 +56,8 @@ Route::prefix('category')->group(function () {
     Route::post('/store', [CategoryController::class, 'categoryStore'])->name('category.store');
 
     Route::get('/edit/{id}', [CategoryController::class, 'categoryEdit'])->name('category.edit');
+    
+    Route::post('/update', [CategoryController::class, 'categoryUpdate'])->name('category.update');
 });
 
 
