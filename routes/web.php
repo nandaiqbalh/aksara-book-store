@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\Backend\AdminProfileController;
+use App\Http\Controllers\Backend\BookController;
 use App\Http\Controllers\Backend\CategoryController;
 use App\Http\Controllers\Frontend\IndexController;
 use Illuminate\Support\Facades\Route;
@@ -56,8 +57,13 @@ Route::prefix('category')->group(function () {
     Route::post('/store', [CategoryController::class, 'categoryStore'])->name('category.store');
 
     Route::get('/edit/{id}', [CategoryController::class, 'categoryEdit'])->name('category.edit');
-    
+
     Route::post('/update', [CategoryController::class, 'categoryUpdate'])->name('category.update');
+});
+
+// ADMIN BOOK ALL ROUTES
+Route::prefix('book')->group(function () {
+    Route::get('/add', [BookController::class, 'bookAdd'])->name('book.add');
 });
 
 
