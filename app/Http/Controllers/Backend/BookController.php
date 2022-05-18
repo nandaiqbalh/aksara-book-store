@@ -91,4 +91,12 @@ class BookController extends Controller
 
         return view('backend.book.book_view', compact('books'));
     }
+
+    public function bookEdit($id)
+    {
+        $categories = Category::latest()->get();
+        $books = Book::findOrFail($id);
+
+        return view('backend.book.book_edit', compact( 'categories', 'books'));
+    }
 }

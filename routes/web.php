@@ -69,6 +69,8 @@ Route::prefix('book')->group(function () {
 
     Route::get('/manage', [BookController::class, 'bookManage'])->name('book.manage');
 
+    Route::get('/edit/{id}', [BookController::class, 'bookEdit'])->name('book.edit');
+
 });
 
 
