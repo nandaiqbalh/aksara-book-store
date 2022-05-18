@@ -12,8 +12,10 @@
         <div class="box-body">
           <div class="row">
             <div class="col">
-            <form method="POST" action="{{route('book.store')}}" enctype="multipart/form-data">
-            @csrf    
+            <form method="POST" action="{{route('book.update')}}" enctype="multipart/form-data">
+                    @csrf
+                    <input type="hidden" name="id" value="{{$books -> id}}">
+                    <input type="hidden" name="old_book_code" value="{{$books -> book_code}}">   
                 <div class="row">
                     <div class="col-12">	
 
@@ -124,17 +126,6 @@
                                     </div>
                             </div> 
 
-                            <div class="col-md-4">
-                                <div class="form-group">
-                                    <label>Book Image<span class="text-danger">*</span></label>
-                                    <div class="controls">
-                                        <input type="file" value="{{$books -> book_image}}" name="book_image" class="form-control" > </div>
-                                        @error('book_image') 
-                                        <span class="text-danger">{{ $message }}</span>
-                                        @enderror                                 
-                                    </div>
-                            </div> 
-                            {{-- endof col 2 --}}
                         </div>	
                         {{-- end of row 6 --}}
 
@@ -155,7 +146,7 @@
                                 <div class="form-group">
                                     <label>Book Description<span class="text-danger">*</span></label>
                                     <div class="controls">
-                                        <textarea name="description" value="{{$books -> description}}" class="form-control"></textarea></div>
+                                        <textarea name="description"  class="form-control">{!!$books -> description !!}</textarea></div>
 
                                     </div>
                             </div> 

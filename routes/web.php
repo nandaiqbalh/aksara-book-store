@@ -71,6 +71,8 @@ Route::prefix('book')->group(function () {
 
     Route::get('/edit/{id}', [BookController::class, 'bookEdit'])->name('book.edit');
 
+    Route::post('/update', [BookController::class, 'bookUpdate'])->name('book.update');
+
 });
 
 
