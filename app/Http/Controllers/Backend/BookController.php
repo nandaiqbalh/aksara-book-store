@@ -134,8 +134,8 @@ class BookController extends Controller
         $book_id = $request->id;
 
         // handling field yang harus unique (gabole sama) di table
-        $book_code = $request->old_book_code;
-        if ($book_code != $request->book_code) {
+        $old_code = $request->old_book_code;
+        if ($old_code != $request->book_code) {
             $validator = Validator::make($request->all(),[
                 'book_code' => 'required | unique:books',
 
@@ -175,5 +175,31 @@ class BookController extends Controller
         );
 
         return Redirect()->route('book.manage')->with($notification);
+    }
+
+    public function bookInactive($id)
+    {
+        Book::findOrFail($id)->update([
+            'status' => 0,
+        ]);
+        $notification = array(
+            'message' => 'Book Inactivated Successfully',
+            'alert-type' => 'success'
+        );
+
+        return redirect()->back()->with($notification);
+    }
+
+    public function bookActive($id)
+    {
+        Book::findOrFail($id)->update([
+            'status' => 1,
+        ]);
+        $notification = array(
+            'message' => 'Book Activated Successfully',
+            'alert-type' => 'success'
+        );
+
+        return redirect()->back()->with($notification);
     }
 }

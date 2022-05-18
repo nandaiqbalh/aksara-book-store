@@ -73,6 +73,9 @@ Route::prefix('book')->group(function () {
 
     Route::post('/update', [BookController::class, 'bookUpdate'])->name('book.update');
 
+    Route::get('/inactive/{id}', [BookController::class, 'bookInactive'])->name('book.inactive');
+    Route::get('/active/{id}', [BookController::class, 'bookActive'])->name('book.active');
+
 });
 
 
