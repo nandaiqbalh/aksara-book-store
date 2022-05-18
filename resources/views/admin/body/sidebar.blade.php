@@ -1,3 +1,8 @@
+@php
+    $prefix = Request::route()->getPrefix();
+    $route = Route::current()->getName();
+@endphp
+
 <aside class="main-sidebar">
     <!-- sidebar-->
     <section class="sidebar">	
@@ -24,19 +29,17 @@
           </a>
         </li>  
 		
-        <li class="treeview">
+        <li class="treeview {{($prefix == '/category')?'active' : ''}}">
           <a href="#">
-            <i data-feather="message-circle"></i>
-            <span>Application</span>
+            <i data-feather="mail"></i> <span>Category</span>
             <span class="pull-right-container">
               <i class="fa fa-angle-right pull-right"></i>
             </span>
           </a>
           <ul class="treeview-menu">
-            <li><a href="chat.html"><i class="ti-more"></i>Chat</a></li>
-            <li><a href="calendar.html"><i class="ti-more"></i>Calendar</a></li>
+            <li class="{{($route == 'all.category') ? 'active' : ''}}"><a href="{{route('all.category')}}"><i class="ti-more"></i>All Category</a></li>
           </ul>
-        </li> 
+        </li>
 		  
         <li class="treeview">
           <a href="#">

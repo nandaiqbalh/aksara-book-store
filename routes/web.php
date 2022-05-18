@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\Backend\AdminProfileController;
+use App\Http\Controllers\Backend\CategoryController;
 use App\Http\Controllers\Frontend\IndexController;
 use Illuminate\Support\Facades\Route;
 
@@ -47,6 +48,13 @@ Route::get('/admin/change/password', [AdminProfileController::class, 'adminChang
 
 Route::post('/admin/update/password', [AdminProfileController::class, 'adminUpdatePassword'])->name('admin.update.password');
 
+
+// ADMIN CATEGORY ALL ROUTES
+Route::prefix('category')->group(function () {
+    Route::get('/view', [CategoryController::class, 'categoryView'])->name('all.category');
+});
+
+
 // kata web setelah sacntum adalah nama guard
 Route::middleware(['auth:sanctum,web', 'verified'])->get('/dashboard', function () {
     return view('dashboard');
@@ -55,3 +63,4 @@ Route::middleware(['auth:sanctum,web', 'verified'])->get('/dashboard', function 
 
 // USER ALL ROUTES
 Route::get('/', [IndexController::class, 'index']);
+
