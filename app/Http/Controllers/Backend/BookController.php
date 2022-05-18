@@ -26,7 +26,7 @@ class BookController extends Controller
             'category_id' => 'required',
             'book_name' => 'required',
             'book_author' => 'required',
-            'book_code' => 'required' | 'unique',
+            'book_code' => 'required' | 'unique:books',
             'book_quantity' => 'required',
             'book_page' => 'required',
             'book_language' => 'required',
