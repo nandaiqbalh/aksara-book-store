@@ -12,8 +12,9 @@
         <div class="box-body">
           <div class="row">
             <div class="col">
-                <form novalidate>
-                  <div class="row">
+            <form method="POST" action="{{route('book.store')}}" enctype="multipart/form-data">
+            @csrf    
+                <div class="row">
                     <div class="col-12">	
 
                         <div class="row">    
@@ -138,6 +139,17 @@
                         {{-- end of row 6 --}}
 
                         <div class="row">
+
+                        <div class="col-md-4">
+                                <div class="form-group">
+                                    <label>Book Author<span class="text-danger">*</span></label>
+                                    <div class="controls">
+                                        <input type="text" name="book_author" class="form-control"> </div>
+                                            @error('book_author') 
+                                     <span class="text-danger">{{ $message }}</span>
+                                     @enderror                                 
+                                    </div>
+                            </div> 
 
                             <div class="col-md-6">
                                 <div class="form-group">

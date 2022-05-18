@@ -64,6 +64,9 @@ Route::prefix('category')->group(function () {
 // ADMIN BOOK ALL ROUTES
 Route::prefix('book')->group(function () {
     Route::get('/add', [BookController::class, 'bookAdd'])->name('book.add');
+
+    Route::post('/store', [BookController::class, 'bookStore'])->name('book.store');
+
 });
 
 
