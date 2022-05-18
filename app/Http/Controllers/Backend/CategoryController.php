@@ -39,4 +39,11 @@ class CategoryController extends Controller
         );
         return Redirect()->back()->with($notification);
     }
+
+    public function categoryEdit($id)
+    {
+        $categories = Category::findOrFail($id);
+
+        return view('backend.category.category_edit', compact('categories'));
+    }
 }

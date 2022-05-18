@@ -50,7 +50,7 @@
                                     <i class="{{$category -> category_icon}}"></i>    
                                 </span>                            
                             <td>
-                                <a href="" class="btn btn-info" title="Edit Data"><i class="fa fa-pencil"></i></a>
+                                <a href="{{route('category.edit',$category->id)}}" class="btn btn-info" title="Edit Data"><i class="fa fa-pencil"></i></a>
                                 <a href="" id="delete" class="btn btn-danger" title="Delete Data"><i class="fa fa-trash"></i></a>
                             </td>
                             </tr>      
