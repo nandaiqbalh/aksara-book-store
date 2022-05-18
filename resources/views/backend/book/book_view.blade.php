@@ -64,7 +64,7 @@
                             </td>
                             <td>
                                 <a href="{{route('book.edit', $book -> id)}}" class="btn btn-info" title="Edit Data"><i class="fa fa-pencil"></i></a>
-                                <a href="" id="delete" class="btn btn-danger" title="Delete Data"><i class="fa fa-trash"></i></a>
+                                <a href="{{route('book.delete', $book -> id)}}" id="delete" class="btn btn-danger" title="Delete Data"><i class="fa fa-trash"></i></a>
                                 @if ($book -> status == 1)
                                     <a href="{{route('book.inactive', $book -> id)}}" class="btn btn-danger" title="Inactive Now"><i class="fa fa-arrow-down"></i></a>
                                 @else

@@ -202,4 +202,18 @@ class BookController extends Controller
 
         return redirect()->back()->with($notification);
     }
+
+    public function bookDelete($id)
+    {
+        $book = Book::findOrFail($id);
+        unlink($book->book_image);
+
+
+        $notification = array(
+            'message' => 'Book Deleted Successfully',
+            'alert-type' => 'success'
+        );
+
+        return redirect()->back()->with($notification);
+    }
 }

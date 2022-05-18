@@ -76,6 +76,8 @@ Route::prefix('book')->group(function () {
     Route::get('/inactive/{id}', [BookController::class, 'bookInactive'])->name('book.inactive');
     Route::get('/active/{id}', [BookController::class, 'bookActive'])->name('book.active');
 
+    Route::get('/delete/{id}', [BookController::class, 'bookDelete'])->name('book.delete');
+
 });
 
 
