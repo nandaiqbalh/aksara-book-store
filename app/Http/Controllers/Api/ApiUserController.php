@@ -64,4 +64,74 @@ class ApiUserController extends Controller
             'message' => $pesan
         ]);
     }
+
+    public function getProfile(Request $request)
+    {
+
+        try {
+            //code...
+            $user_id = $request->id;
+            $data = User::find($user_id);
+            return response()->json([
+                'success' => 1,
+                'message' => 'Successfully Get User Profile!',
+                'data' => $data
+            ]);
+        } catch (\Exception $e) {
+            //throw $th;
+            return response()->json([
+                'success' => 0,
+                'message' => $e->getMessage(),
+                'data' => []
+            ], 500);
+        }
+    }
+
+    public function userProfileUpdate(Request $request)
+    {
+
+        try {
+            //nama, email, password
+            $validasi = Validator::make($request->all(), [
+                'name' => 'required|min:2|max:45',
+                'username' => 'required|unique:users,id' . $request->user()->id,
+                'phone' => 'required|unique:users',
+            ]);
+
+            if ($validasi->fails()) {
+                $val = $validasi->errors()->all();
+                return $this->errorMessage($val[0]);
+            } else {
+                $user = User::find($request->user()->id);
+
+                $user->name = $request->name;
+                $user->username = $request->username;
+                $user->gender = $request->gender;
+                $user->address = $request->address;
+                $user->phone = $request->phone;
+
+                // if ($request->file('profile_photo_path')) {
+                //     $file = $request->file('profile_photo_path');
+                //     @unlink(public_path('upload/user_images/' . $user->profile_photo_path));
+                //     $fileName = date('YmdHi') . $file->getClientOriginalName();
+                //     $file->move(public_path('upload/user_images'), $fileName);
+                //     $user['profile_photo_path'] = $fileName;
+                // }
+
+                $user->update();
+                return response()->json([
+                    'success' => 1,
+                    'message' => 'Successfully Update the User Profile!',
+                    'data' => $user
+                ]);
+            }
+        } catch (\Exception $e) {
+            return response()->json([
+                'success' => 0,
+                'message' => $e->getMessage(),
+                'data' => []
+            ], 500);
+        }
+
+    }
 }

@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Api\ApiUserController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -20,3 +21,6 @@ use Illuminate\Support\Facades\Route;
 
 Route::post('/user/login/', [ApiUserController::class, 'login']);
 Route::post('/user/register/', [ApiUserController::class, 'register']);
+
+Route::get('/user/get-profile/', [ApiUserController::class, 'getProfile']);
+Route::post('/user/update-profile/', [ApiUserController::class, 'userProfileUpdate']);
