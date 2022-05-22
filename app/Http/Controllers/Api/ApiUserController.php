@@ -71,11 +71,11 @@ class ApiUserController extends Controller
         try {
             //code...
             $user_id = $request->id;
-            $data = User::find($user_id);
+            $user = User::where('id', $user_id)->first();
             return response()->json([
                 'success' => 1,
                 'message' => 'Successfully Get User Profile!',
-                'data' => $data
+                'user' => $user
             ]);
         } catch (\Exception $e) {
             //throw $th;
@@ -93,22 +93,32 @@ class ApiUserController extends Controller
         try {
             //nama, email, password
             $validasi = Validator::make($request->all(), [
-                'name' => 'required|min:2|max:45',
-                'username' => 'required|unique:users,id' . $request->user()->id,
-                'phone' => 'required|unique:users',
+                'email' => 'unique:users',
+                'phone' => 'unique:users',
             ]);
 
             if ($validasi->fails()) {
                 $val = $validasi->errors()->all();
                 return $this->errorMessage($val[0]);
             } else {
-                $user = User::find($request->user()->id);
+                $user = User::find($request->id);
 
+                // validasi update email
+                if($request->email != null){
+                    $user->email = $request->email;
+                }
+
+                // validasi update phone
+                if($request->phone != null){
+                    $user->phone = $request->phone;
+                }
+
+                // validasi update phone
+                if($request->address != null){
+                    $user->address = $request->address;
+                }
+                
                 $user->name = $request->name;
-                $user->username = $request->username;
-                $user->gender = $request->gender;
-                $user->address = $request->address;
-                $user->phone = $request->phone;
 
                 // if ($request->file('profile_photo_path')) {
                 //     $file = $request->file('profile_photo_path');
@@ -122,14 +132,14 @@ class ApiUserController extends Controller
                 return response()->json([
                     'success' => 1,
                     'message' => 'Successfully Update the User Profile!',
-                    'data' => $user
+                    'user' => $user
                 ]);
             }
         } catch (\Exception $e) {
             return response()->json([
                 'success' => 0,
                 'message' => $e->getMessage(),
-                'data' => []
+                'user' => []
             ], 500);
         }
 
