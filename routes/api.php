@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Api\ApiBookController;
+use App\Http\Controllers\Api\ApiCheckoutController;
 use App\Http\Controllers\Api\ApiUserController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -33,3 +34,5 @@ Route::get('/book/get-all/', [ApiBookController::class, 'bookAll']);
 Route::get('/book/get-featured/', [ApiBookController::class, 'featuredBook']);
 
 Route::get('/book/get-novels/', [ApiBookController::class, 'novelsBook']);
+
+Route::post('/checkout-book', [ApiCheckoutController::class, 'checkoutBook']);

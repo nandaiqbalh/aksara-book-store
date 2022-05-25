@@ -21,22 +21,24 @@ class ApiBookController extends Controller
 
     public function featuredBook()
     {
-        $features = Book::where('featured', 1)->orderBy('id', 'DESC')->limit(5)->get();
+
+        $books = Book::where('featured', 1)->orderBy('id', 'DESC')->limit(5)->get();
 
         return response()->json([
             'success' => 1,
-            'message' => 'Sucessfully get featured bood!',
-            'book' => $features
+            'message' => 'Sucessfully get latest book!',
+            'books' => $books
         ]);
+
     }
 
     public function novelsBook()
     {
-        $novels = Book::where('hot_deal', 1)->where('category_id', '==', 2)->orderBy('id', 'DESC')->limit(5)->get();
+        $novels = Book::where('category_id', '==', 2)->orderBy('id', 'DESC')->limit(5)->get();
 
         return response()->json([
             'success' => 1,
-            'message' => 'Sucessfully get hot deals book!',
+            'message' => 'Sucessfully get top novel books!',
             'book' => $novels
         ]);
     }
