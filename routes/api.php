@@ -35,4 +35,8 @@ Route::get('/book/get-featured/', [ApiBookController::class, 'featuredBook']);
 
 Route::get('/book/get-novels/', [ApiBookController::class, 'novelsBook']);
 
+// chekout
 Route::post('/checkout-book', [ApiCheckoutController::class, 'checkoutBook']);
+
+Route::post('/checkout-history', [ApiCheckoutController::class, 'checkoutHistory']);
+
